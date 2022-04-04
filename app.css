@@ -67,3 +67,10 @@ body {
     margin: 0 0 10px 4px;
     font-size: 18px;
 }
+
+@media (max-width: 600px) {
+    .game-field_cell {
+        height: 100px;
+        width: 100px;
+    }
+}
