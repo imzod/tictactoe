@@ -74,10 +74,7 @@ class TicTacToe {
 const isPlayerOneFirst = true;
 const playerOne = {name: "Andrey"};
 const playerTwo = {name: "Ruslan"};
-/*
-Тернарный оператор работает как if...else.
-Сначала идёт условие, потом через "?" результат, если условие истинно и через  ":" результат если ложно
-*/
+
 let game = isPlayerOneFirst ? new TicTacToe(playerOne, playerTwo) : new TicTacToe(playerTwo, playerOne);
 let gameTurns = [];
 const cells = document.querySelectorAll(".game-field_cell");
@@ -113,8 +110,6 @@ function addPlayers(event) {
 }
 
 resetButton.addEventListener('click', reset);
-console.dir(resetButton)
-
 undoButton.addEventListener('click', undo);
 
 function status() {
