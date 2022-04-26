@@ -1,0 +1,44 @@
+select 
+user_id,
+count(winner) as count_win, 
+count(loser) as count_lose, count(draw) as count_draw,
+count(not_finish) as count_not_finish
+	from 
+		(
+			select 
+			gw.id,
+			u.id as user_id,
+			gw."result",
+			case (gw.result)
+			when '1'
+			then 1 END winner,			
+			case (gw.result)
+			when '2' 
+			then 1 END loser,
+			case (gw.result)
+			when '0'
+			then 1 END draw,
+			case (gw.result)
+			when '3' 
+			then 1 END not_finish			
+				from games gw 
+		left join users u on gw.player_one_id  =  u.id 
+	union
+		select gl.id, u.id as user_id, gl."result" ,
+		case (gl.result)
+			when '2' 
+			then 1 END winner,
+			case (gl.result)
+			when '1'
+			then 1 END loser,			
+			case (gl.result)
+
+			when '0'
+			then 1 END draw,
+			case (gl.result)
+			when '3' 
+			then 1 END not_finish
+			from games gl
+		left join users u on gl.player_two_id  =  u.id) as games
+group by user_id
+-- order by count_win desc;

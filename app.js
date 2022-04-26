@@ -3,7 +3,7 @@ const ejsMate = require('ejs-mate');
 const path = require("path");
 const ExpressError = require("./utils/ExpressError");
 const bodyParser = require("body-parser");
-const gameController = require("./controllers/gameController");
+const {dbSelect} = require("./controllers/dbSelect");
 
 
 const app = express();
@@ -29,15 +29,19 @@ app.post('/game', (req, res) => {
     res.render('game', {body});
 });
 
+app.post("/db", async (req, res) => {
+    dbSelect(req, res);
+});
+
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page not found', 404))
 });
 
-app.use((err, req, res, next) => {
+/*app.use((err, req, res, next) => {
     const {statusCode = 500} = err;
     if (!err.message) err.message = 'Oh no, ERROR!!';
     res.status(statusCode).render('error', {err});
-})
+})*/
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

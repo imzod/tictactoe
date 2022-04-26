@@ -1,0 +1,18 @@
+explain SELECT name,
+(SELECT COUNT(*) as wins
+	FROM games
+	WHERE (player_one_id = 1
+	AND result = '1') or (player_two_id = 1 and result = '2')),
+(SELECT COUNT(*) as loses
+	FROM games
+	WHERE (player_one_id = 1
+	AND result = '2') or (player_two_id = 1 and result = '1')),
+(SELECT COUNT(*) as draws
+	FROM games
+	WHERE (player_one_id = 1 or player_two_id = 1) and result = '0'),
+(SELECT COUNT(*) as not_finished
+	FROM games
+	WHERE (player_one_id = 1 or player_two_id = 1) and result = '3')
+	
+	FROM users
+	where id = 1

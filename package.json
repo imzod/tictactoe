@@ -1,0 +1,33 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "",
+  "main": "public/javascripts/home.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/imzod/tictactoe.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/imzod/tictactoe/issues"
+  },
+  "homepage": "https://github.com/imzod/tictactoe#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.0",
+    "ejs": "^3.1.6",
+    "ejs-mate": "^3.0.0",
+    "express": "^4.17.3",
+    "knex": "^1.0.5",
+    "mongoose": "^6.3.0",
+    "nodemon": "^2.0.15",
+    "pg": "^8.7.3"
+  }
+}
+
+

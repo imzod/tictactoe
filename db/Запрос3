@@ -1,0 +1,13 @@
+explain SELECT 
+  users.login as user, 
+  SUM(CASE WHEN tmp.result = '1' THEN 1 ELSE 0 END) won,
+  SUM(CASE WHEN tmp.result = '0' THEN 1 ELSE 0 END) drawn,
+  SUM(CASE WHEN tmp.result = '3' THEN 1 ELSE 0 END) not_yet,
+  SUM(CASE WHEN tmp.result = '2' THEN 1 ELSE 0 END) lost  
+FROM (
+SELECT id, player_one_id AS player, result as result FROM games
+UNION
+SELECT id, player_two_id AS player, (CASE WHEN result = '1' THEN '2' WHEN result = '2' THEN '1' WHEN result = '3' THEN '3' ELSE '0' END) AS result FROM games
+) tmp
+LEFT JOIN users ON tmp.player = users.id
+GROUP BY users.login
